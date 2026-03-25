@@ -1,0 +1,8 @@
+django==5.2
+django-cors-headers
+numpy
+pandas
+requests
+django-browser-reload
+channels
+markupsafe
