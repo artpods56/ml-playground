@@ -164,5 +164,5 @@ cython_debug/
 .DS_Store
 
 apps/webapp/staticfiles/
-apps/webapp/static/css/styles.css
+apps/webapp/src/webapp/static/css/styles.css
 

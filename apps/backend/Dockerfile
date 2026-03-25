@@ -3,13 +3,13 @@ FROM python:3.11.4-slim-buster
 WORKDIR /api
 
 
-COPY requirements.txt /api/requirements.txt
+COPY src/backend/requirements.txt /api/requirements.txt
 
 
 RUN pip install --no-cache-dir --upgrade -r /backend/requirements.txt
 
 
-COPY . .
+COPY ../.. .
 
 EXPOSE 8000
 

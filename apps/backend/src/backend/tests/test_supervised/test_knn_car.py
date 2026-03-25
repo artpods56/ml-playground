@@ -10,7 +10,7 @@ from schemas.configs.k_nearest_neighbour_config import KNeighborsParams
 
 
 def test_knn_on_car_dekho_dataset():
-    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../../../.."))
+    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../../../../../../../../../../.."))
     csv_path = os.path.join(project_root, "PycharmProjects/ml-playground/datasets", "CAR DETAILS FROM CAR DEKHO.csv")
 
     df = pd.read_csv(csv_path)

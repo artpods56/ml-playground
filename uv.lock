@@ -1,0 +1,54 @@
+version = 1
+revision = 2
+requires-python = ">=3.12"
+
+[manifest]
+members = [
+    "backend",
+    "core",
+    "ml-playground",
+    "webapp",
+    "worker",
+]
+
+[[package]]
+name = "backend"
+version = "0.1.0"
+source = { editable = "apps/backend" }
+
+[[package]]
+name = "core"
+version = "0.1.0"
+source = { editable = "libs/core" }
+
+[[package]]
+name = "ml-playground"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "backend" },
+    { name = "core" },
+    { name = "webapp" },
+    { name = "worker" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "backend", editable = "apps/backend" },
+    { name = "core", editable = "libs/core" },
+    { name = "webapp", editable = "apps/webapp" },
+    { name = "worker", editable = "apps/worker" },
+]
+
+[package.metadata.requires-dev]
+dev = []
+
+[[package]]
+name = "webapp"
+version = "0.1.0"
+source = { editable = "apps/webapp" }
+
+[[package]]
+name = "worker"
+version = "0.1.0"
+source = { editable = "apps/worker" }

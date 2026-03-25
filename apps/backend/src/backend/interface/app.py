@@ -10,7 +10,7 @@ import os
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 from mpl_toolkits.mplot3d import Axes3D  # For 3D plot
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
 
 from algorithms.supervised.logistic_regression import LogisticRegression
 from algorithms.supervised.polynomial_regression import PolynomialRegression
