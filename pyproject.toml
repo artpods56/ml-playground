@@ -5,3 +5,29 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = []
+
+dependencies = [
+    "core",
+    "backend",
+    "webapp",
+    "worker",
+]
+
+[tool.uv.workspace]
+members = [
+    "libs/core",
+    "apps/backend",
+    "apps/webapp",
+    "apps/worker",
+]
+
+[dependency-groups]
+dev = []
+
+
+[tool.uv.sources]
+core = { workspace = true }
+backend = { workspace = true }
+worker = { workspace = true }
+webapp = { workspace = true }
+pytest-beartype = { git = "https://github.com/beartype/pytest-beartype", branch = "main" }
