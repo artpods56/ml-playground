@@ -1,4 +1,4 @@
-# streamlit run interface/app.py
+# streamlit run interface/webapp.py
 import streamlit as st
 import pandas as pd
 import numpy as np
