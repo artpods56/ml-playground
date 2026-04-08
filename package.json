@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "scripts": {
+    "webapp:css:build": "tailwindcss -i ./apps/webapp/assets/styles.css -o ./apps/webapp/src/webapp/static/css/styles.css --minify",
+    "webapp:css:watch": "tailwindcss -i ./apps/webapp/assets/styles.css -o ./apps/webapp/src/webapp/static/css/styles.css --watch"
+  },
+  "devDependencies": {
+    "daisyui": "^5.5.19",
+    "@tailwindcss/cli": "^4.2.2",
+    "tailwindcss": "^4.2.2"
+  }
+}

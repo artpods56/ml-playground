@@ -5,7 +5,17 @@ description = "Webapp"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "channels>=4.2,<5.0",
+    "django>=5.2,<6.0",
+    "django-browser-reload>=1.18,<2.0",
+    "django-cors-headers>=4.7,<5.0",
+    "requests>=2.32,<3.0",
 ]
+
+[project.scripts]
+webapp-css-build = "webapp.__main__:build_css"
+webapp-manage = "webapp.__main__:manage"
+webapp-server = "webapp.__main__:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

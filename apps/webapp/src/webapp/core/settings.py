@@ -15,6 +15,14 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+REPO_ROOT = Path(__file__).resolve().parents[5]
+
+
+def env_bool(name: str, default: bool = False) -> bool:
+    value = os.getenv(name)
+    if value is None:
+        return default
+    return value.strip().lower() in {"1", "true", "yes", "on"}
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,9 +33,9 @@ SECRET_KEY = "django-insecure-o=^jp(yjnwj%4$ew+si%m947*kfa_r+a$-ntz3fgi052jcahcq
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = bool(os.environ.get("DEBUG", default=0))
+DEBUG = env_bool("DEBUG", default=True)
 
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1 localhost").split()
 
 if DEBUG:
     LOGGING = {
@@ -41,7 +49,7 @@ if DEBUG:
         "loggers": {
             "django": {
                 "handlers": ["console"],
-                "level": os.getenv("DJANGO_LOG_LEVEL", "DEBUG"),
+                "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
                 "propagate": False,
             },
         },
@@ -57,20 +65,27 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_browser_reload",
     "channels",
+    "webapp",
     "playgrounds",
+    "endpoints",
     "corsheaders",
 ]
 
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "CONFIG": {
-            "hosts": [
-                ("127.0.0.1", 6379),
-            ],
+REDIS_URL = os.getenv("REDIS_URL")
+
+if REDIS_URL:
+    CHANNEL_LAYERS = {
+        "default": {
+            "BACKEND": "channels_redis.core.RedisChannelLayer",
+            "CONFIG": {"hosts": [REDIS_URL]},
         },
-    },
-}
+    }
+else:
+    CHANNEL_LAYERS = {
+        "default": {
+            "BACKEND": "channels.layers.InMemoryChannelLayer",
+        },
+    }
 
 
 MIDDLEWARE = [
@@ -110,6 +125,7 @@ TEMPLATES = [
     },
 ]
 
+ASGI_APPLICATION = "core.asgi.application"
 WSGI_APPLICATION = "core.wsgi.application"
 
 
@@ -165,6 +181,13 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+DATASET_DIR = Path(
+    os.getenv(
+        "DATASET_DIR",
+        REPO_ROOT / "datasets",
+    )
+)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

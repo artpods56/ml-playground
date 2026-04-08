@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
     DatasetInputDOM.addEventListener('change', function(event) {
         ExistingDatasetSelectDOM.value = 0;
         const file = event.target.files[0];
-        window.dataset = value;
+        window.dataset = file;
         handleCSVData(file);
     });
 
@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const value = event.target.value;
         
         function processDataset(dataset_file_name) {
-            fetch('http://' + window.location.hostname + ':8050/api/load_file/', {
+            fetch('/backend/load_file/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -156,11 +156,20 @@ document.addEventListener('DOMContentLoaded', function() {
                     datasetFileName: dataset_file_name
                 })
             })
-            .then(response => response.blob())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Failed to load dataset (${response.status})`);
+                }
+
+                return response.blob();
+            })
             .then(blob => {
                 const file = new File([blob], dataset_file_name, { type: 'text/csv' });
                 window.dataset = file;
                 handleCSVData(file);
+            })
+            .catch(error => {
+                console.error('Error loading dataset:', error);
             });
         }
 
@@ -170,4 +179,3 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-
