@@ -1,0 +1,79 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - button [ref=e6] [cursor=pointer]:
+          - img [ref=e7]
+        - generic [ref=e10] [cursor=pointer]: ml-playground
+        - generic [ref=e11]:
+          - combobox [ref=e13] [cursor=pointer]:
+            - option "light" [selected]
+            - option "dark"
+            - option "cupcake"
+            - option "bumblebee"
+            - option "emerald"
+            - option "corporate"
+            - option "synthwave"
+            - option "retro"
+            - option "cyberpunk"
+            - option "valentine"
+            - option "halloween"
+            - option "garden"
+            - option "forest"
+            - option "aqua"
+            - option "lofi"
+            - option "pastel"
+            - option "fantasy"
+            - option "wireframe"
+            - option "black"
+            - option "luxury"
+            - option "dracula"
+            - option "cmyk"
+            - option "autumn"
+            - option "business"
+            - option "acid"
+            - option "lemonade"
+            - option "night"
+            - option "coffee"
+            - option "winter"
+            - option "dim"
+            - option "nord"
+            - option "sunset"
+          - button [ref=e14] [cursor=pointer]:
+            - img [ref=e15]
+          - button [ref=e17] [cursor=pointer]:
+            - img [ref=e19]
+      - generic [ref=e23]:
+        - generic [ref=e26]:
+          - heading "Machine Learning Playground" [level=1] [ref=e27]
+          - paragraph [ref=e28]: Choose an algorithm and dataset from the sidebar to load its configuration and start experimenting.
+          - generic [ref=e29]:
+            - generic [ref=e30]: "Algorithms: 6"
+            - generic [ref=e31]: "Datasets: 0"
+            - generic [ref=e32]: Backend connected
+        - generic [ref=e33]:
+          - generic [ref=e35]:
+            - heading "How to use it" [level=2] [ref=e36]
+            - paragraph [ref=e37]: 1. Pick an algorithm in the sidebar.
+            - paragraph [ref=e38]: 2. Select or upload a CSV dataset.
+            - paragraph [ref=e39]: 3. Adjust parameters and start training.
+          - generic [ref=e41]:
+            - heading "What loads dynamically" [level=2] [ref=e42]
+            - paragraph [ref=e43]: The algorithm parameter form is loaded with HTMX.
+            - paragraph [ref=e44]: The websocket client connects to the FastAPI backend on port 8000.
+            - paragraph [ref=e45]: If the backend is offline, the page still renders and shows a warning.
+    - generic [ref=e46]:
+      - generic "close sidebar"
+      - complementary [ref=e47]:
+        - generic [ref=e49]:
+          - generic [ref=e50] [cursor=pointer]:
+            - radio "Models" [ref=e51]
+            - img [ref=e52]
+            - text: Models
+          - generic [ref=e54] [cursor=pointer]:
+            - radio "Datasets" [checked] [ref=e55]
+            - img [ref=e56]
+            - text: Datasets
+  - contentinfo [ref=e58]:
+    - complementary [ref=e59]:
+      - paragraph [ref=e60]: Copyright © 2024 - All right reserved
